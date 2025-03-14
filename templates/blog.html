@@ -1,0 +1,75 @@
+
+
+{{ define "blog" }}
+
+    <div class="main-content ">
+
+        <style>
+            .blog-posts-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .blog-post {
+                width: 80%;
+                max-width: 800px;
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            .blog-post h1 {
+                font-size: 2em;
+                margin-bottom: 10px;
+            }
+
+            .blog-post p {
+                font-size: 1.2em;
+                color: #555;
+            }
+        </style>
+
+        <div class="blog-posts-container">
+
+        <script>
+
+            // create a SQLite client and connect to the database
+            // insert title, description, subject, content, and date.
+            // query the database and pull data to create the html elements, e.g. table, div, h1, p, etc.
+            // create a database object for the blog posts, e.g.  []BlogPosts
+            const blogPosts = [
+                { title: 'Blog Post Title 1', description: 'Description of Blog Post 1' },
+                { title: 'Blog Post Title 2', description: 'Description of Blog Post 2' },
+                { title: 'Blog Post Title 3', description: 'Description of Blog Post 3' }
+            ];
+
+            const container = document.querySelector('.blog-posts-container');
+
+            blogPosts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'blog-post';
+
+                const titleElement = document.createElement('h1');
+                titleElement.textContent = post.title;
+
+                const descriptionElement = document.createElement('p');
+                descriptionElement.textContent = post.description;
+
+                postElement.appendChild(titleElement);
+                postElement.appendChild(descriptionElement);
+                container.appendChild(postElement);
+            });
+        </script>
+
+        {{end}}
+
+</div>
+</div>
+</body>
+</html>
+
+    
+    
+

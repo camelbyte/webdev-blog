@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link href="https://cdn.tailwindcss.com" rel="tailwind-cdn">
+</head>
+<body>
+
+{{ define "content" }}
+
+
+<section class="max-w-5xl mx-auto p-6 text-center" style="background-color: var(--bg-primary); color: var(--text-primary);">
+    <h1 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">My Projects</h1>
+
+    <!-- Search Input -->
+    <div class="mb-6">
+        <input
+                
+                type="text"
+                id="searchInput"
+                class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-gray-300 focus:outline-none focus:ring-2 focus:ring-accent"
+                placeholder="Search projects..."
+                onkeyup="filterProjects()"
+                style="background-color: var(--bg-secondary); color: var(--text-secondary); border-color: var(--bg-secondary);"
+        >
+    </div>
+
+    <!-- Projects Table -->
+    <table id="projectsTable" class="table-auto w-full border-collapse border" style="border-color: var(--bg-secondary);">
+        <thead style="background-color: var(--bg-secondary); color: var(--text-secondary);">
+        <tr>
+            <th class="border px-4 py-2" style="border-color: var(--bg-secondary);">To-Do App</th>
+            <th class="border px-4 py-2" style="border-color: var(--bg-secondary);">Utilize GET/POST/DELETE/PUT HTTP methods
+            to add/remove tasks from the todo list.</th>
+            <th class="border px-4 py-2" style="border-color: var(--bg-secondary);">Technologies</th>
+            <th class="border px-4 py-2" style="border-color: var(--bg-secondary);">GitHub Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="hover:bg-gray-700 transition" style="background-color: var(--bg-primary);">
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">Web Scraper</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">Description of Project 1. It's awesome!</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">HTML, CSS, JavaScript</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">
+                <a href="#" style="color: var(--accent); text-decoration: underline;">View on GitHub</a>
+            </td>
+        </tr>
+        <tr class="hover:bg-gray-700 transition" style="background-color: var(--bg-primary);">
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">News Feed</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">Description of Project 2. It's even more awesome!</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">Python, Flask, CSS</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">
+                <a href="#" style="color: var(--accent); text-decoration: underline;">View on GitHub</a>
+            </td>
+        </tr>
+        <tr class="hover:bg-gray-700 transition" style="background-color: var(--bg-primary);">
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">ChatBot</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">Example using the OpenAI API library.</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">Node.js, Express</td>
+            <td class="border px-4 py-2" style="border-color: var(--bg-secondary);">
+                <a href="https://github.com/dontslamthedoor/chatbot-example" style="color: var(--accent); text-decoration: underline;">github.com/dontslamthedoor/chatbot-example</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- JavaScript -->
+<script>
+    function filterProjects() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const table = document.getElementById('projectsTable');
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName('td');
+            let match = false;
+
+            for (let j = 0; j < cells.length; j++) {
+                if (cells[j] && cells[j].innerText.toLowerCase().includes(input)) {
+                    match = true;
+                    break;
+                }
+            }
+
+            rows[i].style.display = match ? '' : 'none';
+        }
+    }
+</script>
+
+
+{{ end }}
+
+</body>
+</html>
